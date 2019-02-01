@@ -6,6 +6,7 @@
 //Class -
 //Lab  -
 // lab
+// hi
 public class AsciiArt
 {
 	public static void main ( String[] args )
