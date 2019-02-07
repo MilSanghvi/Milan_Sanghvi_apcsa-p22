@@ -1,7 +1,7 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name -
-//Date -
+//Name - Milan Sanghvi
+//Date - 2/7/19
 
 public class Line
 {

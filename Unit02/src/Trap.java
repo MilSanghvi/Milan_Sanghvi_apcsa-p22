@@ -1,7 +1,7 @@
 //� A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date -
-//Class -
+//Name - Milan Sanghvi
+//Date - 2/7/19
+//Class - Period 2
 //Lab  - 
 
 public class Trap
