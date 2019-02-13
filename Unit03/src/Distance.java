@@ -31,7 +31,7 @@ public class Distance
 		xOne = x1;
 		xTwo = x2;
 		yOne = y1;
-		xTwo = y2;
+		yTwo = y2;
 	}
 
 	public void calcDistance()
