@@ -21,7 +21,30 @@ public class StringExplorer
 		System.out.println ("After toLowerCase(), sample = " + sample);
 		
 		//  Try other methods here:
+		int pos = sample.indexOf("slow");
+		if(pos != -1)
+		{
+			System.out.println("slow\" is found at position " + pos);
+		}		
+		else
+		{
+			System.out.println("\"slow\" is not found");
 
-	}
+		}
+		String test = "Computer Science is the best, the greatest, and the most wonderful subject to study!";
+		String result = "The word \"the\" was found at index: ";
+		
+		int prevPos = 0;
+
+		for (int x = 0; x < test.length(); x++) {
+			int posThe = test.indexOf("the", x);
+			if (posThe != -1 && prevPos != posThe) {
+				result = result + posThe + ", ";
+				prevPos = posThe;
+			}
+		}
+		
+		System.out.println(result);
 
 }
+	}
