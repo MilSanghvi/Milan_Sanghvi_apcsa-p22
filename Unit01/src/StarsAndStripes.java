@@ -10,6 +10,8 @@ import static java.lang.System.*;
 
 public class StarsAndStripes
 {
+	Integer one = 90;
+	Integer two = 75;
    public void StarsAndStripesI()
    {
       out.println("StarsAndStripes");
@@ -72,6 +74,10 @@ public class StarsAndStripes
 	   printSmileyEyes();
 	   printTwentyDashes();
 	   out.println();
+   }
+   public StarsAndStripes()
+   {
+			System.out.print(one.compareTo(two));
    }
    
    		
