@@ -1,3 +1,5 @@
+import java.util.Random;
+
 /**
  * A program to carry on conversations with a human user.
  * This version:
@@ -6,11 +8,11 @@
  *</li><li>
  * 		Will transform statements as well as react to keywords
  *</li></ul>
+ * This version uses an array to hold the default responses.
  * @author Laurie White
  * @version April 2012
- *
  */
-public class Magpie4
+public class Magpie5
 {
 	/**
 	 * Get a default greeting 	
@@ -35,6 +37,11 @@ public class Magpie4
 		{
 			response = "Say something, please.";
 		}
+
+		else if (findKeyword(statement, "no") >= 0)
+		{
+			response = "Why so negative?";
+		}
 		else if (findKeyword(statement, "mother") >= 0
 				|| findKeyword(statement, "father") >= 0
 				|| findKeyword(statement, "sister") >= 0
@@ -42,63 +49,46 @@ public class Magpie4
 		{
 			response = "Tell me more about your family.";
 		}
-		else if (findKeyword(statement, "cat") >= 0
-				|| findKeyword(statement, "dog") >= 0)
-		{
-			response = "Tell me more about your pets.";
-		}
-		else if (findKeyword(statement, "Mr") >= 0)
-		{
-			response = "I bet he's a good teacher!";
-		}
-		else if (findKeyword(statement, "sport") >= 0
-				|| findKeyword(statement, "practice") >= 0)
-		{
-			response = "What sport do you play?";
-		}
-		else if (findKeyword(statement, "student") >= 0)
-		{
-			response = "How old are you?";
-		}
-		else if (findKeyword(statement, "school") >= 0)
-		{
-			response = "I hope you have good grades";
-		}
-		else if (findKeyword(statement, "no") >= 0)
-		{
-			response = "Why so negative?";
-		}
+
 		// Responses which require transformations
 		else if (findKeyword(statement, "I want to", 0) >= 0)
 		{
 			response = transformIWantToStatement(statement);
 		}
+		//  Part of student solution
 		else if (findKeyword(statement, "I want", 0) >= 0)
 		{
 			response = transformIWantStatement(statement);
 		}
 
-		else 
+		else
 		{
+
 			// Look for a two word (you <something> me)
 			// pattern
 			int psn = findKeyword(statement, "you", 0);
-			int psnI = findKeyword(statement, "I", 0);
-
 
 			if (psn >= 0
 					&& findKeyword(statement, "me", psn) >= 0)
 			{
 				response = transformYouMeStatement(statement);
 			}
-			else if (psnI >= 0
-						&& findKeyword(statement, "you", psnI) >= 0)
-			{
-					response = transformIYouStatement(statement);
-			}
 			else
 			{
-				response = getRandomResponse();
+				//  Part of student solution
+				// Look for a two word (I <something> you)
+				// pattern
+				psn = findKeyword(statement, "i", 0);
+
+				if (psn >= 0
+						&& findKeyword(statement, "you", psn) >= 0)
+				{
+					response = transformIYouStatement(statement);
+				}
+				else
+				{
+					response = getRandomResponse();
+				}
 			}
 		}
 		return response;
@@ -126,13 +116,13 @@ public class Magpie4
 		return "What would it mean to " + restOfStatement + "?";
 	}
 
+	
 	/**
 	 * Take a statement with "I want <something>." and transform it into 
 	 * "Would you really be happy if you had <something>?"
 	 * @param statement the user statement, assumed to contain "I want"
 	 * @return the transformed statement
 	 */
-	
 	private String transformIWantStatement(String statement)
 	{
 		//  Remove the final period, if there is one
@@ -144,10 +134,9 @@ public class Magpie4
 			statement = statement.substring(0, statement
 					.length() - 1);
 		}
-
 		int psn = findKeyword (statement, "I want", 0);
-		String want = statement.substring(psn + 6).trim();
-		return "Would you really be happy if you had " + want + "?";
+		String restOfStatement = statement.substring(psn + 6).trim();
+		return "Would you really be happy if you had " + restOfStatement + "?";
 	}
 	
 	/**
@@ -181,7 +170,8 @@ public class Magpie4
 	 * @param statement the user statement, assumed to contain "I" followed by "you"
 	 * @return the transformed statement
 	 */
-	private String transformIYouStatement(String statement) {
+	private String transformIYouStatement(String statement)
+	{
 		//  Remove the final period, if there is one
 		statement = statement.trim();
 		String lastChar = statement.substring(statement
@@ -192,12 +182,13 @@ public class Magpie4
 					.length() - 1);
 		}
 		
-		int indexI = findKeyword (statement, "I", 0);
-		int indexYou = findKeyword (statement, "you", indexI + 2);
-
-		String restOfStatement = statement.substring(indexI + 2, indexYou).trim();
+		int psnOfI = findKeyword (statement, "I", 0);
+		int psnOfYou = findKeyword (statement, "you", psnOfI);
+		
+		String restOfStatement = statement.substring(psnOfI + 1, psnOfYou).trim();
 		return "Why do you " + restOfStatement + " me?";
 	}
+	
 
 	
 	
@@ -264,39 +255,16 @@ public class Magpie4
 	 * Pick a default response to use if nothing else fits.
 	 * @return a non-committal string
 	 */
-	private String getRandomResponse()
+	private String getRandomResponse ()
 	{
-		final int NUMBER_OF_RESPONSES = 4;
-		double r = Math.random();
-		int whichResponse = (int)(r * NUMBER_OF_RESPONSES);
-		String response = "";
-		
-		if (whichResponse == 0)
-		{
-			response = "Interesting, tell me more.";
-		}
-		else if (whichResponse == 1)
-		{
-			response = "Hmmm.";
-		}
-		else if (whichResponse == 2)
-		{
-			response = "Do you really think so?";
-		}
-		else if (whichResponse == 3)
-		{
-			response = "You don't say.";
-		}
-		else if (whichResponse == 4)
-		{
-			response = "You are a wonderful person.";
-		}
-		else if (whichResponse == 5)
-		{
-			response = "I do not know how to respond to this.";
-		}
-
-		return response;
+		Random r = new Random ();
+		return randomResponses [r.nextInt(randomResponses.length)];
 	}
-
+	
+	private String [] randomResponses = {"Interesting, tell me more",
+			"Hmmm.",
+			"Do you really think so?",
+			"You don't say."
+	};
+	
 }
