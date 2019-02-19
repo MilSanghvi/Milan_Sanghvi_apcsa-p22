@@ -9,16 +9,19 @@ public class Perfect
    private int number;
 
 	//add constructors
-   public Perfect() {
+   public Perfect() 
+   {
 	   number = 0;
    }
    
-   public Perfect(int num) {
+   public Perfect(int num) 
+   {
 	   setNumber(num);
    }
 	//add a set method
    
-   public void setNumber(int num) {
+   public void setNumber(int num) 
+   {
 	   number = num;
    }
 
@@ -27,8 +30,10 @@ public class Perfect
 		//loop to find all divisors, adding each divisor to sum
 		int sum = 0;
 		
-		for (int x = 1; x < number; x++) {
-			if (number%x == 0) {
+		for (int x = 1; x < number; x++)
+		{
+			if (number%x == 0) 
+			{
 				sum = sum + x;
 			}
 		}
