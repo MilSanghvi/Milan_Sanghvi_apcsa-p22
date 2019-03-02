@@ -33,7 +33,7 @@ public class LetterRemover
 		
 		int loc = cleaned.indexOf(lookFor);
 		
-		//until loc does not exist in the string
+		//until loc does not exist in the string	
 		while (loc > -1) 
 		{
 			cleaned = cleaned.substring(0,loc)+ cleaned.substring(loc+1);
