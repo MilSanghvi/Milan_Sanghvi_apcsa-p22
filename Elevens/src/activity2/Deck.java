@@ -47,10 +47,6 @@ public class Deck {
 		{
 			for(int j = 0; j < ranks.length; j++)
 			{
-				//array version
-				//cards[pos] = new Card(ranks[j], suits[i], values[j]);
-				//pos++;
-				//list version
 				cards.add(new Card(ranks[j], suits[i], values[j]));
 				
 			}
@@ -77,7 +73,8 @@ public class Deck {
 	 * Accesses the number of undealt cards in this deck.
 	 * @return the number of undealt cards in this deck.
 	 */
-	public int size() {
+	public int size() 
+	{
 		return size;
 	}
 
