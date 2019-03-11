@@ -34,15 +34,6 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		
-		
-		//array version
-		/*size = ranks.length * suits.length;
-		origSize = size;
-		//size of Card[]
-		cards = new Card[size];*/
-		
-		//create each card
-		//int pos = 0; //counts up to store each card in a slot in cards
 		for(int i = 0; i < suits.length; i++)
 		{
 			for(int j = 0; j < ranks.length; j++)
@@ -61,10 +52,6 @@ public class Deck {
 	 * @return true if this deck is empty, false otherwise.
 	 */
 	public boolean isEmpty() {
-		//array version
-		//if(size == 0) return true;
-		
-		//list version
 		if(cards.size() == 0) return true;
 		return false;	
 	}
@@ -83,19 +70,6 @@ public class Deck {
 	 * and reset the size to represent the entire deck.
 	 */
 	public void shuffle() {
-		//array version
-		/*for(int i = size-1; i > 0; i--)
-		{
-			int r = (int)(Math.random()*(i+1));
-			Card save = cards[i];
-			cards[i] = cards[r];
-			cards[r] = save;
-		}
-		//resetting value of size to the original size
-		size = origSize;*/
-		
-		//list version
-		
 		  for(int i = cards.size()-1; i > 0; i--)
 		  {
 		  	int r = (int)(Math.random()*(i+1));
@@ -112,12 +86,6 @@ public class Deck {
 	 *         previously dealt.
 	 */
 	public Card deal() {
-		//array version
-		/*if(size > 0) size--;
-		else return null;
-		return cards[size];*/
-		
-		//list version
 		if(cards.size() > 0)
 		{
 			Card d = cards.get(cards.size()-1);
@@ -134,38 +102,12 @@ public class Deck {
 	@Override
 	public String toString() {
 		String rtn = "size = " + size + "\nUndealt cards: \n";
-
-		//array version
-		/*for (int k = size - 1; k >= 0; k--) {
-			rtn = rtn + cards[k];
-			if (k != 0) {
-				rtn = rtn + ", ";
-			}
-			if ((size - k) % 2 == 0) {
-				// Insert carriage returns so entire deck is visible on console.
-				rtn = rtn + "\n";
-			}
-		}
-		rtn = rtn + "\nDealt cards: \n";
-		for (int k = cards.length - 1; k >= size; k--) {
-			rtn = rtn + cards[k];
-			if (k != size) {
-				rtn = rtn + ", ";
-			}
-			if ((k - cards.length) % 2 == 0) {
-				// Insert carriage returns so entire deck is visible on console.
-				rtn = rtn + "\n";
-			}
-		}*/
-		
-		//list version
 		for (int k = size - 1; k >= 0; k--) {
 			rtn = rtn + cards.get(k);
 			if (k != 0) {
 				rtn = rtn + ", ";
 			}
 			if ((size - k) % 2 == 0) {
-				// Insert carriage returns so entire deck is visible on console.
 				rtn = rtn + "\n";
 			}
 		}
@@ -177,7 +119,6 @@ public class Deck {
 				rtn = rtn + ", ";
 			}
 			if ((k - size) % 2 == 0) {
-				// Insert carriage returns so entire deck is visible on console.
 				rtn = rtn + "\n";
 			}
 		}
