@@ -11,6 +11,13 @@ public class ToyStoreRunner
 {
 	public static void main( String args[] )
 	{
-
+		ToyStore test = new ToyStore();
+		out.println(test);
+		
+		ToyStore buddy = new ToyStore("sorry bat sorry sorry sorry train train teddy teddy ball ball");
+		out.println(buddy);
+		out.println("max == " + buddy.getMostFrequentToy());
+		buddy.sortToysByCount();
+		out.println(buddy);
 	}
 }
