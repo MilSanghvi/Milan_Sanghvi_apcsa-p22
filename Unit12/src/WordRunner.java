@@ -8,19 +8,39 @@ public class WordRunner
 {
 	public static void main( String args[] ) throws IOException
 	{
-		Scanner file = new Scanner(new File("//Users//MilSanghvi//Documents//GitHub//Milan_Sanghvi_apcsa-p22//Unit12//src//words.dat"));
+		Scanner file = new Scanner(new File("words.dat"));
+		String output = "";
 
 		int size = file.nextInt();
+		file.nextLine();
 		
-		Word[] list = new Word[size];
-		
-		for(int i = 0; i < size; i++)
+		Word[] array = new Word[size];
+
+		for (int x = 0; x < size; x++)
 		{
-			list[i] = new Word(file.next());
+			String s = file.nextLine();
+			Word text = new Word(s);
+			array[x] = text;
 		}
+				
+		Arrays.sort(array);
 		
-		Arrays.sort(list);
-	
-		System.out.println(Arrays.toString(list));
+		int max = 1;
+		int total = 0;
+		
+		while (total < size)
+		{
+			for (Word x : array)
+			{
+				//if word length = max print word 
+				if (x.toString().length() == max)
+					{
+						System.out.println(x);
+						total++;
+					}
+			}
+			max++;
+		}
+
 	}
 }
