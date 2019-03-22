@@ -113,10 +113,6 @@ public class CardGameGUI extends JFrame implements ActionListener {
 		repaint();
 	}
 
-	public CardGameGUI(ElevensBoard board2) {
-		// TODO Auto-generated constructor stub
-	}
-
 	/**
 	 * Run the game.
 	 */

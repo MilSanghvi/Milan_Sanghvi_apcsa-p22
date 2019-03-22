@@ -9,6 +9,7 @@ public class Grid
    //load vals into the rows x cols grid randomly
 	public Grid(int rows, int cols, String[] vals)
 	{
+		
 	}
 
 	//find out which of the vals occurs the most
