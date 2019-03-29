@@ -8,7 +8,13 @@ public class TotalRow
 {
     public static List<Integer> getRowTotals( int[][] m )
     {
-    	//add code here
-		return null;
+    	List<Integer> result = new ArrayList<Integer>();
+    	for(int[] rows : m)
+    	{
+    		int sum = 0;
+    		for(int num : rows) sum += num;
+    		result.add(sum);
+    	}
+		return result;
     }
 }
