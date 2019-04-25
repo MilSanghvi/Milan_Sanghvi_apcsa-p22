@@ -474,8 +474,8 @@ public void mirrorDiagonal()
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
-    Picture flower1 = new Picture("flower1.jpg");
-    Picture flower2 = new Picture("flower2.jpg");
+    Picture flower1 = new Picture("src/images/flower1.jpg");
+    Picture flower2 = new Picture("src/images/flower2.jpg");
     this.copy(flower1,0,0);
     this.copy(flower2,100,0);
     this.copy(flower1,200,0);
@@ -491,8 +491,8 @@ public void mirrorDiagonal()
   /** Method to create a collage of several pictures */
   public void createCollageTwo()
   {
-    Picture flower1 = new Picture("flower1.jpg");
-    Picture flower2 = new Picture("flower2.jpg");
+    Picture flower1 = new Picture("src/images/flower1.jpg");
+    Picture flower2 = new Picture("src/images/flower2.jpg");
     this.copyTwo(flower1,0,0, 50, 90, 20, 60);
     this.copyTwo(flower2,100,0,50, 90, 20, 60);
     this.copyTwo(flower1,200,0, 50, 90, 20, 60);
@@ -508,8 +508,8 @@ public void mirrorDiagonal()
   /** Method to create a collage of several pictures */
   public void createMyCollage()
   {
-    Picture flower1 = new Picture("robot.jpg");
-    Picture flower2 = new Picture("caterpillar.jpg");
+    Picture flower1 = new Picture("src/images/robot.jpg");
+    Picture flower2 = new Picture("src/images/caterpillar.jpg");
     this.copy(flower1,0,200);
     this.copyTwo(flower2,120,50,50, 90, 20, 60);
     Picture g = new Picture(flower1);
