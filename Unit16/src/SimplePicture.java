@@ -343,6 +343,134 @@ public class SimplePicture implements DigitalPicture
    return pixelArray;
  }
  
+ /*
+  * public void encode (Picture messagePict)
+ {
+	 Pixel[][] messagePixels = messagePict.getPixels2D();
+	 Pixel[][] currPixels = this.getPixels2D();
+	 Pixel currPixel = null;
+	 Pixel messagePixel = null;
+	 int count = 0;
+	 for (int row = 0; row < this.getHeight(); row++)
+	 {
+		 for (int col = 0; col < this.getWidth(); col++)
+		 {
+			 currPixel = currPixels[row][col];
+			 int number = currPixel.getRed() * currPixel.getGreen();
+			 if ((number % 10) % 2 != 0)
+			 {
+				 currPixel.setRed(currPixel.getRed() - 1);
+				 currPixel.setGreen(currPixel.getGreen() - 1);
+			 }
+			 messagePixel = messagePixels[row][col];
+			 if (messagePixel.colorDistance(Color.BLACK) < 50)
+			 {
+				 currPixel.setRed(currPixel.getRed() + 1);
+				 currPixel.setGreen(currPixel.getGreen() + 1);
+				 count++;
+			 }
+		 }
+	 }
+	 System.out.println(count);
+ }
+ 
+ 	public Picture decode()
+ 	{
+ 		Pixel[][] pixels = this.getPixels2D();
+ 		int height = this.getHeight();
+ 		int width = this.getWidth();
+ 		Pixel currPixel = null;
+ 		Pixel messagePixel = null;
+		Picture messagePicture = new Picture(height, width);
+ 		Pixel[][] messagePixels = messagePicture.getPixels2D();
+ 		int count = 0; 
+ 		for (int row = 0; row < this.getHeight(); row++)
+ 		{
+ 			for (int col = 0; col < this.getWidth(); col++)
+ 			{
+ 				currPixel = pixels[row][col];
+ 				int num = currPixel.getRed() * currPixel.getGreen();
+ 				messagePixel = messagePixels[row][col];
+ 				if (((currPixel.getRed() * currPixel.getGreen()) % 10) % 2 != 0 && (currPixel.getRed() % 2 != 0) && (currPixel.getGreen() % 2 != 0))
+ 				{
+ 					messagePixel.setColor(Color.BLACK);
+ 					count++;
+ 				}
+ 			}
+ 		}
+ 		
+ 		System.out.println(count);
+ 		return messagePicture;
+ 	}
+ 	public void blur(int x, int y, int w, int h){
+ 		  Pixel[][] pixels = this.getPixels2D();
+ 		  for(int r=y; r<y+h; r++){
+ 			  for(int c=x; c<x+w; c++){	//for every pixel in rectangle
+ 				  Pixel pixelObj = pixels[r][c];
+ 				  int avgRed = ((
+ 				  		  pixels[r-1][c-1].getRed() 
+ 				  		+ pixels[r-1][c  ].getRed()
+ 				  		+ pixels[r-1][c+1].getRed()
+ 				  		+ pixels[r  ][c-1].getRed() 
+ 				  		+ pixels[r  ][c+1].getRed()
+ 				  		+ pixels[r+1][c-1].getRed()
+ 				  		+ pixels[r+1][c  ].getRed() 
+ 				  		+ pixels[r+1][c+1].getRed()
+ 				  		)/8);
+ 				  int avgGreen = ((
+ 				  		  pixels[r-1][c-1].getGreen() 
+ 				  		+ pixels[r-1][c  ].getGreen()
+ 				  		+ pixels[r-1][c+1].getGreen()
+ 				  		+ pixels[r  ][c-1].getGreen() 
+ 				  		+ pixels[r  ][c+1].getGreen()
+ 				  		+ pixels[r+1][c-1].getGreen()
+ 				  		+ pixels[r+1][c  ].getGreen() 
+ 				  		+ pixels[r+1][c+1].getGreen()
+ 				  		)/8);
+ 				  int avgBlue = ((
+ 				  		  pixels[r-1][c-1].getBlue() 
+ 				  		+ pixels[r-1][c  ].getBlue()
+ 				  		+ pixels[r-1][c+1].getBlue()
+ 				  		+ pixels[r  ][c-1].getBlue() 
+ 				  		+ pixels[r  ][c+1].getBlue()
+ 				  		+ pixels[r+1][c-1].getBlue()
+ 				  		+ pixels[r+1][c  ].getBlue() 
+ 				  		+ pixels[r+1][c+1].getBlue()
+ 				  		)/8);
+ 				  pixelObj.setRed(avgRed);
+ 				  pixelObj.setGreen(avgGreen);
+ 				  pixelObj.setBlue(avgBlue);
+ 			  }
+ 		  }
+ 	  }
+ 	
+ 	public void sharpen(int x, int y, int w, int h) {
+		System.out.println("Milan Sangvhi");
+
+		if (x == 0) x += 1;
+		if (y == 0) y += 1;
+
+		Pixel[][] pixels = this.getPixels2D();
+		for (int row = y; row < h; row++) {
+			for (int col = x; col < w; col++) {
+				Pixel currPixel = pixels[row][col];
+				Pixel newPixel = pixels[row - 1][col - 1];
+
+				currPixel.setRed(currPixel.getRed() + (currPixel.getRed() - newPixel.getRed()) / 2);
+				if (currPixel.getRed() > 255) currPixel.setRed(255);
+				else if (currPixel.getRed() < 0) currPixel.setRed(0);
+
+				currPixel.setBlue(currPixel.getBlue() + (currPixel.getBlue() - newPixel.getBlue()) / 2);
+				if (currPixel.getBlue() > 255) currPixel.setBlue(255);
+				else if (currPixel.getBlue() < 0) currPixel.setBlue(0);
+
+				currPixel.setGreen(currPixel.getGreen() + (currPixel.getGreen() - newPixel.getGreen()) / 2);
+				if (currPixel.getGreen() > 255) currPixel.setGreen(255);
+				else if (currPixel.getGreen() < 0) currPixel.setGreen(255);
+			}
+		}
+	}
+  */
  /**
   * Method to get a two-dimensional array of Pixels for this simple picture
   * @return a two-dimensional array of Pixel objects in row-major order.

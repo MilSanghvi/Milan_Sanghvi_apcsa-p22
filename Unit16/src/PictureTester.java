@@ -188,32 +188,6 @@ public class PictureTester
     swan.edgeDetection2(10);
     swan.explore();
   }
-  public static void testEncodeAndDecode()
-  {
-    Picture beach = new Picture("src/images/beach.jpg");
-    beach.explore();
-    Picture message = new Picture("src/images/msg.jpg");
-    beach.encode(message);
-    beach.explore();
-    Picture decoded = beach.decode();
-    decoded.explore();
-  }
-  public static void testSharpen(int x, int y, int w, int h){
-	  Picture redMoto = new Picture("src/images/redMotorcycle.jpg");
-	  redMoto.explore();
-	  redMoto.sharpen(x,y,w,h);
-	  redMoto.explore();
-	  }
-  private static void testBlur(int x, int y, int w, int h, int n) {
-	  Picture redMoto = new Picture("src/images/redMotorcycle.jpg");
-	  redMoto.explore();
-	  for(int i=0; i<n; i++){
-		  redMoto.blur(x,y,w,h);
-	  }
-	  redMoto.explore();
-	  
-	  
-}
 
 
   
@@ -252,8 +226,5 @@ public class PictureTester
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
-	 // testEncodeAndDecode();
-	  testSharpen(50,50,500,400);
-	  testBlur(160, 190, 80, 80, 10);
   }
 }
