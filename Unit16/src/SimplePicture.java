@@ -725,6 +725,7 @@ public class SimplePicture implements DigitalPicture
     return result;
   }
   //Done
+  //Done
  
  /**
   * Method to load a picture from a file name and show it in a picture frame
