@@ -724,6 +724,7 @@ public class SimplePicture implements DigitalPicture
     Picture result = scale(yFactor,yFactor);
     return result;
   }
+  //Done
  
  /**
   * Method to load a picture from a file name and show it in a picture frame
