@@ -43,7 +43,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			bX = 70;
 			for (int i = 0; i < 9; i++)
 			{
-				Block brick = new Block (bX, j, 65, 20, Color.RED);
+				Block brick = new Block (bX, j, 55, 20, Color.RED);
 				bricks.add(brick);
 				bX += 70;
 			}
@@ -54,7 +54,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			bX = 70;
 			for (int i = 0; i < 9; i++)
 			{
-				Block brick = new Block (bX, j, 65, 20, Color.RED);
+				Block brick = new Block (bX, j, 55, 20, Color.RED);
 				bricks.add(brick);
 				bX += 70;
 			}
@@ -64,7 +64,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			bX = 11;
 			for (int i = 0; i < 2; i++)
 			{
-				Block brick = new Block (bX, j, 20, 65, Color.RED);
+				Block brick = new Block (bX, j, 20, 55, Color.RED);
 				bricks.add(brick);
 				bX += 25;
 			}
@@ -75,7 +75,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			bX = 715;
 			for (int i = 0; i < 2; i++)
 			{
-				Block brick = new Block (bX, j, 20, 65, Color.RED);
+				Block brick = new Block (bX, j, 20, 55, Color.RED);
 				bricks.add(brick);
 				bX += 25;
 			}
@@ -177,29 +177,20 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			ball.setX(400);
 			ball.setY(350);
 			ball.draw(graphToBack, Color.BLUE);
-			int x = (int)(Math.random()*2);
-
-			if (x%2 == 0) 
-				{
-					ball.setXSpeed(3);
-					ball.setYSpeed(-3);
-				}
-			else{
-					ball.setXSpeed(-3);
-					ball.setYSpeed(3);
-				}
-			
+			ball.setXSpeed(-3);
+			ball.setYSpeed(3);
+	
 			if (!done) level++;
 
-			if (level < 3)
+			if (level == 2)
 			{
 
 				for (int j = 6; j < 70; j+=22)
 				{
 					bX = 72;
-					for (int i = 0; i < 9; i++)
+					for (int i = 0; i < 10; i++)
 					{
-						Block brick = new Block (bX, j, 65, 20, Color.RED);
+						Block brick = new Block (bX, j, 55, 20, Color.RED);
 						bricks.add(brick);
 						bX += 70;
 					}
@@ -210,7 +201,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 					bX = 72;
 					for (int i = 0; i < 9; i++)
 					{
-						Block brick = new Block (bX, j, 65, 20, Color.RED);
+						Block brick = new Block (bX, j, 55, 20, Color.RED);
 						bricks.add(brick);
 						bX += 70;
 					}
@@ -219,9 +210,9 @@ public class Pong extends Canvas implements KeyListener, Runnable
 				for (int j = 60; j < 409; j+=70)
 				{
 					bX = 6;
-					for (int i = 0; i < 3; i++)
+					for (int i = 0; i < 9; i++)
 					{
-						Block brick = new Block (bX, j, 20, 65, Color.RED);
+						Block brick = new Block (bX, j, 20, 55, Color.RED);
 						bricks.add(brick);
 						bX += 22;
 					}
@@ -232,7 +223,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 										bX = 700;
 					for (int i = 0; i < 3; i++)
 					{
-						Block brick = new Block (bX, j, 20, 65, Color.RED);
+						Block brick = new Block (bX, j, 20, 55, Color.RED);
 						bricks.add(brick);
 						bX += 22;
 					}
