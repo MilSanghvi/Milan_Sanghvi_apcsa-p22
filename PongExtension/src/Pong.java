@@ -28,68 +28,54 @@ public class Pong extends Canvas implements KeyListener, Runnable
 	private int bY;
 	
 	private boolean gameOver;
-	private boolean fin = false;
+	private boolean done = false;
 	private int level;
 
 	public Pong()
 	{
-		//set up all variables related to the game
 		ball = new Ball(400,350,10,10,Color.BLUE,-2,2);
 		paddle = new Paddle(100,300,40,40,Color.YELLOW,3);
 		
 		bricks = new ArrayList<Block>();
 		
-		//top bricks
 		for (int j = 6; j < 40; j+=25)
 		{
-			//j = bY
 			bX = 70;
 			for (int i = 0; i < 9; i++)
 			{
-				//i = number of bricks per row
-				Block brick = new Block (bX, j, 65, 20, Color.GREEN);
+				Block brick = new Block (bX, j, 65, 20, Color.RED);
 				bricks.add(brick);
 				bX += 70;
 			}
 		}
 
-		//bottom bricks
 		for (int j = 444; j > 396; j-=25)
 		{
-			//j = bY
 			bX = 70;
 			for (int i = 0; i < 9; i++)
 			{
-				//i = number of bricks per row
-				Block brick = new Block (bX, j, 65, 20, Color.GREEN);
+				Block brick = new Block (bX, j, 65, 20, Color.RED);
 				bricks.add(brick);
 				bX += 70;
 			}
 		}
-		
-		//left bricks
 		for (int j = 60; j < 409; j+=70)
 		{
-			//j = bY
 			bX = 11;
 			for (int i = 0; i < 2; i++)
 			{
-				//i = number of bricks per row
-				Block brick = new Block (bX, j, 20, 65, Color.GREEN);
+				Block brick = new Block (bX, j, 20, 65, Color.RED);
 				bricks.add(brick);
 				bX += 25;
 			}
 		}
 		
-		//right bricks
 		for (int j = 60; j < 409; j+=70)
 		{
-			//j = bY
 			bX = 715;
 			for (int i = 0; i < 2; i++)
 			{
-				//i = number of bricks per row
-				Block brick = new Block (bX, j, 20, 65, Color.GREEN);
+				Block brick = new Block (bX, j, 20, 65, Color.RED);
 				bricks.add(brick);
 				bX += 25;
 			}
@@ -107,7 +93,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		setVisible(true);
 
 		this.addKeyListener(this);	
-		new Thread(this).start();	//starts the key thread to log key strokes
+		new Thread(this).start();	
 	}
 	
 	public void update(Graphics window){
@@ -116,16 +102,10 @@ public class Pong extends Canvas implements KeyListener, Runnable
 
    public void paint(Graphics window)
    {
-		//set up the double buffering to make the game animation nice and smooth
 		Graphics2D twoDGraph = (Graphics2D)window;
-
-		//take a snap shop of the current screen and save it as an image
-		//that is the exact same width and height as the current screen
 		if(back==null)
 		   back = (BufferedImage)(createImage(getWidth(),getHeight()));
 
-		//create a graphics reference to the back ground image
-		//we will draw all changes on the background image
 		Graphics graphToBack = back.createGraphics();
 
 		board.draw(graphToBack);
@@ -138,20 +118,17 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			b.draw(graphToBack);
 		}
 
-		//see if ball hits left wall or right wall
 		if(!(ball.getX()>=10 && ball.getX()<=750))
 		{
 			ball.setXSpeed(-ball.getXSpeed());
 		}
 		else gameOver = false;
 
-		//see if the ball hits the top or bottom wall 
 		if(!(ball.getY()>=10 && ball.getY()<=450))
 		{
 			ball.setYSpeed(-ball.getYSpeed());
 		}
-
-		//see if the ball hits the paddle 
+ 
 		if (((ball.getX() <= paddle.getX() + paddle.getWidth() + Math.abs(ball.getXSpeed()) &&
 				ball.getX() > paddle.getX()) || 
 				(ball.getX() + ball.getWidth() >= paddle.getX() - Math.abs(ball.getXSpeed())) && 
@@ -166,7 +143,6 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			else ball.setXSpeed(-ball.getXSpeed());
 		}
 		
-		//see if the ball hits a brick
 		for (int i = 0; i < bricks.size(); i++)
 		{
 			Block b = bricks.get(i);
@@ -190,7 +166,6 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			}
 		}
 		
-		//if all bricks destroyed
 		if (bricks.size() == 0)
 		{
 			ball.setXSpeed(0);
@@ -214,69 +189,57 @@ public class Pong extends Canvas implements KeyListener, Runnable
 					ball.setYSpeed(3);
 				}
 			
-			if (!fin) level++;
+			if (!done) level++;
 
 			if (level < 3)
 			{
 
 				for (int j = 6; j < 70; j+=22)
 				{
-					//j = bY
 					bX = 72;
 					for (int i = 0; i < 9; i++)
 					{
-						//i = number of bricks per row
-						Block brick = new Block (bX, j, 65, 20, Color.GREEN);
+						Block brick = new Block (bX, j, 65, 20, Color.RED);
 						bricks.add(brick);
 						bX += 70;
 					}
 				}
 
-				//bottom bricks
 				for (int j = 444; j > 381; j-=22)
 				{
-					//j = bY
 					bX = 72;
 					for (int i = 0; i < 9; i++)
 					{
-						//i = number of bricks per row
-						Block brick = new Block (bX, j, 65, 20, Color.GREEN);
+						Block brick = new Block (bX, j, 65, 20, Color.RED);
 						bricks.add(brick);
 						bX += 70;
 					}
 				}
 				
-				//left bricks
 				for (int j = 60; j < 409; j+=70)
 				{
-					//j = bY
 					bX = 6;
 					for (int i = 0; i < 3; i++)
 					{
-						//i = number of bricks per row
-						Block brick = new Block (bX, j, 20, 65, Color.GREEN);
+						Block brick = new Block (bX, j, 20, 65, Color.RED);
 						bricks.add(brick);
 						bX += 22;
 					}
 				}
 				
-				//right bricks
 				for (int j = 60; j < 409; j+=70)
 				{
-					//j = bY
-					bX = 700;
+										bX = 700;
 					for (int i = 0; i < 3; i++)
 					{
-						//i = number of bricks per row
-						Block brick = new Block (bX, j, 20, 65, Color.GREEN);
+						Block brick = new Block (bX, j, 20, 65, Color.RED);
 						bricks.add(brick);
 						bX += 22;
 					}
 				}
 			}
 			else
-			{   fin = true;
-				//print game over
+			{   done = true;
 				graphToBack.setColor(Color.BLACK);
 				graphToBack.fillRect(0, 0, 800, 600);
 				graphToBack.setColor(Color.WHITE);
@@ -286,16 +249,14 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		}
 		else gameOver = false;
 
-		//see if the paddles need to be moved
 		if(keys[0] == true)
 		{
-			//move left paddle up and draw it on the window
 			if (paddle.getY() > 55 && level == 1) paddle.moveUpAndDraw(graphToBack);
 			else if (paddle.getY() > 78 && level == 2) paddle.moveUpAndDraw(graphToBack);
 		}
 		if(keys[1] == true)
 		{
-			//move left paddle down and draw it on the window
+			
 			if (paddle.getY() < 370 && level == 1) paddle.moveDownAndDraw(graphToBack);
 			else if (paddle.getY() < 347 && level == 2) paddle.moveDownAndDraw(graphToBack);
 		}
@@ -315,7 +276,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		
 		graphToBack.setColor(Color.WHITE);
 
-		if (!fin) graphToBack.drawString("Level " + level, 350, 525);
+		if (!done) graphToBack.drawString("Level " + level, 350, 525);
 
 		twoDGraph.drawImage(back, null, 0, 0);
 	
