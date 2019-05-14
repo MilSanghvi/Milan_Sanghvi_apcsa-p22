@@ -19,12 +19,11 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Ship ship;
 	private Alien alienOne;
 	private Alien alienTwo;
+	private Ammo ammo;
 
-	/* uncomment once you are ready for this part
-	 *
-   private AlienHorde horde;
+    private AlienHorde horde;
 	private Bullets shots;
-	*/
+	
 
 	private boolean[] keys;
 	private BufferedImage back;
@@ -37,7 +36,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 
 		//instantiate other instance variables
 		//Ship, Alien
-
+		ship = new Ship(10, 540);
+		horde = new AlienHorde(20);
+		shots = new Bullets();
+		
 		this.addKeyListener(this);
 		new Thread(this).start();
 
@@ -67,18 +69,67 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		graphToBack.drawString("StarFighter ", 25, 50 );
 		graphToBack.setColor(Color.BLACK);
 		graphToBack.fillRect(0,0,800,600);
-
-		if(keys[0] == true)
+		
+		ship.draw(graphToBack);
+		horde.removeDeadOnes(shots.getList());
+		horde.drawEmAll(graphToBack);
+		horde.moveEmAll();
+		
+		shots.cleanEmUp();
+		shots.drawEmAll(graphToBack);
+		shots.moveEmAll();
+		
+		//horde.collideWithShip(ship, graphToBack, shots);		
+		//move ship
+		if(keys[0]) ship.move("LEFT");	
+		if(keys[1]) ship.move("RIGHT");
+		if(keys[2]) ship.move("UP");
+		if(keys[3]) ship.move("DOWN");
+		if(keys[4])
 		{
-			ship.move("LEFT");
+			shots.add(new Ammo(ship.getX() + ship.getWidth()/2, ship.getY(), 5));
+			keys[4] = false;
 		}
 
-		//add code to move Ship, Alien, etc.
-
-
 		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
-
-
+		for(Alien alien : horde.getList())
+		{
+			//collide left, collide right/ collide top, collide bottom		
+			if((alien.getX() + alien.getWidth() + Math.abs(alien.getSpeed()) >= ship.getX() 
+					&& alien.getX() <= ship.getX()
+					&& alien.getY() >= ship.getY() 
+					&& alien.getY() + alien.getHeight() <= ship.getY() + ship.getHeight()) 
+				|| (alien.getX() - Math.abs(alien.getSpeed()) <= ship.getX() + ship.getWidth() 
+					&& alien.getX() >= ship.getX()
+					&& alien.getY() >= ship.getY() 
+					&& alien.getY() + alien.getHeight() <= ship.getY() + ship.getHeight()
+				|| (ship.getY() - Math.abs(ship.getSpeed()) <= alien.getY() + alien.getHeight() 
+					&& alien.getY() < ship.getY()
+					&& alien.getX() >= ship.getX() 
+					&& alien.getX() + alien.getWidth() <= ship.getX() + ship.getWidth())
+				|| (alien.getY() <= ship.getY() + ship.getHeight() + Math.abs(ship.getSpeed()) 
+					&& alien.getY() > ship.getY()
+					&& alien.getX() >= ship.getX() 
+					&& alien.getX() + alien.getWidth() <= ship.getX() + ship.getWidth())))
+			{
+				ship.setSpeed(0);
+				ship.setCollide(true);
+				for(Alien a : horde.getList()) a.setSpeed(0);
+				break;
+			}
+		}
+		
+		if(ship.getCollide())
+		{
+			graphToBack.setColor(Color.RED);
+			graphToBack.drawString("You lose!", 400, 540);
+		}
+		
+		if(horde.getList().size() == 0)
+		{
+			graphToBack.setColor(Color.GREEN);
+			graphToBack.drawString("You win!", 400, 540);
+		}
 		twoDGraph.drawImage(back, null, 0, 0);
 	}
 
@@ -152,4 +203,3 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
       }
   	}
 }
-
