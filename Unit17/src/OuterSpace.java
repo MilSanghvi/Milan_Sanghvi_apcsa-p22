@@ -37,7 +37,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		//instantiate other instance variables
 		//Ship, Alien
 		ship = new Ship(10, 540);
-		horde = new AlienHorde(20);
+		horde = new AlienHorde(60);
 		shots = new Bullets();
 		
 		this.addKeyListener(this);
@@ -91,34 +91,34 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			keys[4] = false;
 		}
 
-		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
-		for(Alien alien : horde.getList())
-		{
-			//collide left, collide right/ collide top, collide bottom		
-			if((alien.getX() + alien.getWidth() + Math.abs(alien.getSpeed()) >= ship.getX() 
-					&& alien.getX() <= ship.getX()
-					&& alien.getY() >= ship.getY() 
-					&& alien.getY() + alien.getHeight() <= ship.getY() + ship.getHeight()) 
-				|| (alien.getX() - Math.abs(alien.getSpeed()) <= ship.getX() + ship.getWidth() 
-					&& alien.getX() >= ship.getX()
-					&& alien.getY() >= ship.getY() 
-					&& alien.getY() + alien.getHeight() <= ship.getY() + ship.getHeight()
-				|| (ship.getY() - Math.abs(ship.getSpeed()) <= alien.getY() + alien.getHeight() 
-					&& alien.getY() < ship.getY()
-					&& alien.getX() >= ship.getX() 
-					&& alien.getX() + alien.getWidth() <= ship.getX() + ship.getWidth())
-				|| (alien.getY() <= ship.getY() + ship.getHeight() + Math.abs(ship.getSpeed()) 
-					&& alien.getY() > ship.getY()
-					&& alien.getX() >= ship.getX() 
-					&& alien.getX() + alien.getWidth() <= ship.getX() + ship.getWidth())))
-			{
-				ship.setSpeed(0);
-				ship.setCollide(true);
-				for(Alien a : horde.getList()) a.setSpeed(0);
-				break;
-			}
-		}
 		
+				for(Alien alien : horde.getList())
+				{
+					//collide left, collide right/ collide top, collide bottom		
+					if((alien.getX() + alien.getWidth() + Math.abs(alien.getSpeed()) >= ship.getX() 
+							&& alien.getX() <= ship.getX()
+							&& alien.getY() >= ship.getY() 
+							&& alien.getY() + alien.getHeight() <= ship.getY() + ship.getHeight()) 
+						|| (alien.getX() - Math.abs(alien.getSpeed()) <= ship.getX() + ship.getWidth() 
+							&& alien.getX() >= ship.getX()
+							&& alien.getY() >= ship.getY() 
+							&& alien.getY() + alien.getHeight() <= ship.getY() + ship.getHeight()
+						|| (ship.getY() - Math.abs(ship.getSpeed()) <= alien.getY() + alien.getHeight() 
+							&& alien.getY() < ship.getY()
+							&& alien.getX() >= ship.getX() 
+							&& alien.getX() + alien.getWidth() <= ship.getX() + ship.getWidth())
+						|| (alien.getY() <= ship.getY() + ship.getHeight() + Math.abs(ship.getSpeed()) 
+							&& alien.getY() > ship.getY()
+							&& alien.getX() >= ship.getX() 
+							&& alien.getX() + alien.getWidth() <= ship.getX() + ship.getWidth())))
+					{
+						ship.setSpeed(0);
+						ship.setCollide(true);
+						for(Alien a : horde.getList()) a.setSpeed(0);
+						break;
+					}
+				}
+				
 		if(ship.getCollide())
 		{
 			graphToBack.setColor(Color.RED);

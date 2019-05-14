@@ -21,7 +21,6 @@ public class Ammo extends MovingThing
 	{
 		//add code
 		super(x,y);
-		speed = 10;
 	}
 
 	public Ammo(int x, int y, int s)
@@ -34,7 +33,7 @@ public class Ammo extends MovingThing
 	public void setSpeed(int s)
 	{
 	   //add code
-		speed = s;
+		speed = 3;
 	}
 
 	public int getSpeed()

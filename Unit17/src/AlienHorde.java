@@ -77,37 +77,6 @@ public class AlienHorde
 		}
 		
 	}
-	
-	public void collideWithShip(Ship ship, Graphics window, Bullets shots)
-	{
-		for(Alien alien : aliens)
-		{
-			if((alien.getX() + alien.getWidth() + Math.abs(alien.getSpeed()) >= ship.getX() 
-					&& alien.getX() <= ship.getX()
-					&& alien.getY() >= ship.getY() 
-					&& alien.getY() + alien.getHeight() <= ship.getY() + ship.getHeight()) 
-				|| (alien.getX() - Math.abs(alien.getSpeed()) <= ship.getX() + ship.getWidth() 
-					&& alien.getX() >= ship.getX()
-					&& alien.getY() >= ship.getY() 
-					&& alien.getY() + alien.getHeight() <= ship.getY() + ship.getHeight()
-				|| (ship.getY() - Math.abs(ship.getSpeed()) <= alien.getY() + alien.getHeight() 
-					&& alien.getY() < ship.getY()
-					&& alien.getX() >= ship.getX() 
-					&& alien.getX() + alien.getWidth() <= ship.getX() + ship.getWidth())
-				|| (alien.getY() <= ship.getY() + ship.getHeight() + Math.abs(ship.getSpeed()) 
-					&& alien.getY() > ship.getY()
-					&& alien.getX() >= ship.getX() 
-					&& alien.getX() + alien.getWidth() <= ship.getX() + ship.getWidth())))
-			{
-				ship.setSpeed(0);
-				for(Alien a : aliens) a.setSpeed(0);
-				window.drawString("GAME OVER", 400, 340);
-				window.setColor(Color.WHITE);
-				
-			}
-		}
-		
-	}
 
 	public String toString()
 	{
