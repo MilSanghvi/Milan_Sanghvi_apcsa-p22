@@ -210,6 +210,17 @@ public class PictureTester
 	  decoded.explore();
 	  message.explore();
   }
+  public static void testEncodeandDecodeApple()
+  {
+	  Picture beach = new Picture("src/images/beach.jpg");
+	  beach.explore();
+	  Picture message = new Picture("src/images/apple.png");
+	  beach.encode2(message);
+	  beach.explore();
+	  Picture decoded = beach.decode2();
+	  decoded.explore();
+	  message.explore();
+  }
 
 
   
@@ -221,8 +232,9 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-	  testEncodeandDecode();
-	  testEncodeandDecode2();
+	  //testEncodeandDecode();
+	 //testEncodeandDecode2();
+	  testEncodeandDecodeApple();
    // testZeroRed();
  //   testZeroBlue();
 //    testZeroGreen();
