@@ -553,139 +553,81 @@ public void mirrorDiagonal()
     
   }
   
+  
   public void encode (Picture messagePict)
   {
 	 Pixel[][] messagePixels = messagePict.getPixels2D();
 	 Pixel[][] currPixels = this.getPixels2D();
 	 Pixel currPixel = null;
 	 Pixel messagePixel = null;
-	 int count = 0;
-	 int adddiff = 0;
-	 int subdiff = 0;
 	 for (int row = 0; row < this.getHeight(); row++)
 	 {
 		 for (int col = 0; col < this.getWidth(); col++)
 		 {
 			 currPixel = currPixels[row][col];
 			 int redoriginal = currPixel.getRed();
-			 int rootred = (int) Math.sqrt(currPixel.getRed());
-			 if (Math.pow(rootred, 2) != currPixel.getRed())
+			 int lastredoriginal = currPixel.getRed()%10;
+			 int lastreddigit = currPixel.getRed()%10; 
+			 int rootred = (int) Math.sqrt(lastreddigit);
+			 if (Math.pow(rootred, 2) != lastreddigit)
 			 {
-				 for (int add = 1; add < 30; add++)
+				 for (int add = 1; add < 5; add++)
 				 {
-					 currPixel.setRed(currPixel.getRed()+1);
-					 rootred = (int) Math.sqrt(currPixel.getRed());
-					 if (Math.pow(rootred, 2) == currPixel.getRed())
+					 lastreddigit++;
+					 rootred = (int) Math.sqrt(lastreddigit);
+					 if (Math.pow(rootred, 2) == lastreddigit)
 					 {
-						 adddiff = currPixel.getRed() - redoriginal;
+						 int reddiff = lastreddigit - lastredoriginal;
+						 currPixel.setRed(redoriginal + reddiff);
 						 break;
 					 }
 				 }
-				 currPixel.setRed(redoriginal);
-				 for (int sub = 1; sub < 30; sub++)
-				 {
-					currPixel.setRed(currPixel.getRed()-1);
-					rootred = (int) Math.sqrt(currPixel.getRed());
-					 if (Math.pow(rootred, 2) == currPixel.getRed())
-					 {
-						 subdiff = redoriginal - currPixel.getRed();
-						 break;
-					 }
-				 }
-				 currPixel.setRed(redoriginal);
-				 if (adddiff > subdiff)
-				 {
-					 currPixel.setRed(redoriginal - subdiff);
-				 }
-				 else if (adddiff < subdiff)
-				 {
-					 currPixel.setRed(redoriginal + adddiff);
-				 }
-				 if (adddiff > 8 && subdiff > 8)
-				 {
-					 currPixel.setRed(redoriginal);
-				 }
+				 
 			 }
 			 int blueoriginal = currPixel.getBlue();
-			 int rootblue = (int) Math.sqrt(currPixel.getBlue());
-			 if (Math.pow(rootblue, 2) != currPixel.getBlue())
+			 int lastblueoriginal = currPixel.getBlue()%10;
+			 int lastbluedigit = currPixel.getBlue()%10;
+			 int rootblue = (int) Math.sqrt(lastbluedigit);
+			 if (Math.pow(rootblue, 2) != lastbluedigit)
 			 {
-				 for (int add = 1; add < 30; add++)
+				 for (int add = 1; add < 5; add++)
 				 {
-					 currPixel.setBlue(currPixel.getBlue()+1);
-					 rootblue = (int) Math.sqrt(currPixel.getBlue());
-					 if (Math.pow(rootblue, 2) == currPixel.getBlue())
+					 lastbluedigit++;
+					 rootblue = (int) Math.sqrt(lastbluedigit);
+					 if (Math.pow(rootblue, 2) == lastbluedigit)
 					 {
-						 adddiff = currPixel.getBlue() - blueoriginal;
+						 int bluediff = lastbluedigit - lastblueoriginal;
+						 currPixel.setBlue(blueoriginal + bluediff);
 						 break;
 					 }
 				 }
-				 currPixel.setBlue(blueoriginal);
-				 for (int sub = 1; sub < 30; sub++)
-				 {
-					currPixel.setBlue(currPixel.getBlue()-1);
-					rootblue = (int) Math.sqrt(currPixel.getBlue());
-					 if (Math.pow(rootblue, 2) == currPixel.getBlue())
-					 {
-						 subdiff = blueoriginal - currPixel.getBlue();
-						 break;
-					 }
-				 }
-				 currPixel.setBlue(blueoriginal);
-				 if (adddiff > subdiff)
-				 {
-					 currPixel.setBlue(blueoriginal - subdiff);
-				 }
-				 else if (adddiff < subdiff)
-				 {
-					 currPixel.setBlue(blueoriginal + adddiff);
-				 }
+				 
 			 }
 			 int greenoriginal = currPixel.getGreen();
-			 int rootgreen = (int) Math.sqrt(currPixel.getGreen());
-			 if (Math.pow(rootgreen, 2) != currPixel.getGreen())
+			 int lastgreenoriginal = currPixel.getGreen()%10;
+			 int lastgreendigit = currPixel.getGreen()%10;
+			 int rootgreen = (int) Math.sqrt(lastgreendigit);
+			 if (Math.pow(rootgreen, 2) != lastgreendigit)
 			 {
-				 for (int add = 1; add < 30; add++)
+				 for (int add = 1; add < 5; add++)
 				 {
-					 currPixel.setGreen(currPixel.getGreen()+1);
-					 rootgreen = (int) Math.sqrt(currPixel.getGreen());
-					 if (Math.pow(rootgreen, 2) == currPixel.getGreen())
+					 lastgreendigit++;
+					 rootgreen = (int) Math.sqrt(lastgreendigit);
+					 if (Math.pow(rootgreen, 2) == lastgreendigit)
 					 {
-						 adddiff = currPixel.getGreen() - greenoriginal;
+						 int greendiff = lastgreendigit - lastgreenoriginal; 
+						 currPixel.setGreen(greenoriginal + greendiff);
 						 break;
 					 }
 				 }
-				 currPixel.setGreen(greenoriginal);
-				 for (int sub = 1; sub < 30; sub++)
-				 {
-					currPixel.setGreen(currPixel.getGreen()-1);
-					rootgreen = (int) Math.sqrt(currPixel.getGreen());
-					 if (Math.pow(rootgreen, 2) == currPixel.getGreen())
-					 {
-						 subdiff = greenoriginal - currPixel.getGreen();
-						 break;
-					 }
-				 }
-				 currPixel.setGreen(greenoriginal);
-				 if (adddiff > subdiff)
-				 {
-					 currPixel.setGreen(greenoriginal - subdiff);
-				 }
-				 else if (adddiff < subdiff)
-				 {
-					 currPixel.setGreen(greenoriginal + adddiff);
-				 }
-				 if (adddiff > 8 && subdiff > 8)
-				 {
-					 currPixel.setGreen(greenoriginal);
-				 }
+				 
 			 }
 			 messagePixel = messagePixels[row][col];
 			 if (messagePixel.colorDistance(Color.BLACK) < 50)
 			 {
-				 currPixel.setRed(redoriginal+1);
-				 currPixel.setBlue(blueoriginal+1);
-				 currPixel.setGreen(greenoriginal+1);
+				 currPixel.setRed(redoriginal-1);
+				 currPixel.setBlue(blueoriginal-1);
+				 currPixel.setGreen(greenoriginal-1);
 			 }
 		 }
 	 }
@@ -707,24 +649,202 @@ public void mirrorDiagonal()
   			{
   				currPixel = pixels[row][col];
   				messagePixel = messagePixels[row][col];
-  				 int rootred = (int) Math.sqrt(currPixel.getRed());
-  				if (Math.pow(rootred, 2) != currPixel.getRed())
-  				{
-  					int rootblue = (int) Math.sqrt(currPixel.getBlue());
-  	  				if (Math.pow(rootblue, 2) != currPixel.getBlue())
+  				int lastreddigit = currPixel.getRed()%10;
+  				 int rootred = (int) Math.sqrt(lastreddigit);
+  				if (Math.pow(rootred, 2) != lastreddigit)
+  					{
+  						messagePixel.setColor(Color.BLACK);
+  					}
+  				int lastbluedigit = currPixel.getBlue()%10;
+  				int rootblue = (int) Math.sqrt(lastbluedigit);
+  	  			if (Math.pow(rootblue, 2) != lastbluedigit)
   	  				{
-  	  					int rootgreen = (int) Math.sqrt(currPixel.getGreen());
-  	  	  				if (Math.pow(rootgreen, 2) != currPixel.getGreen())
-  	  	  				{
-  	  	  					messagePixel.setColor(Color.BLACK);
-  	  	  				}
+  	  					messagePixel.setColor(Color.BLACK);
   	  				}
+  	  			int lastgreendigit = currPixel.getGreen()%10;
+  	  			int rootgreen = (int) Math.sqrt(lastgreendigit);
+  	  	  		if (Math.pow(rootgreen, 2) != lastgreendigit)
+  	  	  			{
+  	  	  					messagePixel.setColor(Color.BLACK);
+  	  	  			}
   					
-  				}
   			}
   		}
   		return messagePicture;
   	}
+  
+  	public void encode2 (Picture messagePict)
+    {
+  	 Pixel[][] messagePixels = messagePict.getPixels2D();
+  	 Pixel[][] currPixels = this.getPixels2D();
+  	 Pixel currPixel = null;
+  	 Pixel messagePixel = null;
+  	 int count = 0;
+  	 int adddiff = 0;
+  	 int subdiff = 0;
+  	 for (int row = 0; row < this.getHeight(); row++)
+  	 {
+  		 for (int col = 0; col < this.getWidth(); col++)
+  		 {
+  			 currPixel = currPixels[row][col];
+  			 int redoriginal = currPixel.getRed();
+  			 int rootred = (int) Math.sqrt(currPixel.getRed());
+  			 if (Math.pow(rootred, 2) != currPixel.getRed())
+  			 {
+  				 for (int add = 1; add < 30; add++)
+  				 {
+  					 currPixel.setRed(currPixel.getRed()+1);
+  					 rootred = (int) Math.sqrt(currPixel.getRed());
+  					 if (Math.pow(rootred, 2) == currPixel.getRed())
+  					 {
+  						 adddiff = currPixel.getRed() - redoriginal;
+  						 break;
+  					 }
+  				 }
+  				 currPixel.setRed(redoriginal);
+  				 for (int sub = 1; sub < 30; sub++)
+  				 {
+  					currPixel.setRed(currPixel.getRed()-1);
+  					rootred = (int) Math.sqrt(currPixel.getRed());
+  					 if (Math.pow(rootred, 2) == currPixel.getRed())
+  					 {
+  						 subdiff = redoriginal - currPixel.getRed();
+  						 break;
+  					 }
+  				 }
+  				 currPixel.setRed(redoriginal);
+  				 if (adddiff > subdiff)
+  				 {
+  					 currPixel.setRed(redoriginal - subdiff);
+  				 }
+  				 else if (adddiff < subdiff)
+  				 {
+  					 currPixel.setRed(redoriginal + adddiff);
+  				 }
+  				 if (adddiff > 8 && subdiff > 8)
+  				 {
+  					 currPixel.setRed(redoriginal);
+  				 }
+  			 }
+  			 int blueoriginal = currPixel.getBlue();
+  			 int rootblue = (int) Math.sqrt(currPixel.getBlue());
+  			 if (Math.pow(rootblue, 2) != currPixel.getBlue())
+  			 {
+  				 for (int add = 1; add < 30; add++)
+  				 {
+  					 currPixel.setBlue(currPixel.getBlue()+1);
+  					 rootblue = (int) Math.sqrt(currPixel.getBlue());
+  					 if (Math.pow(rootblue, 2) == currPixel.getBlue())
+  					 {
+  						 adddiff = currPixel.getBlue() - blueoriginal;
+  						 break;
+  					 }
+  				 }
+  				 currPixel.setBlue(blueoriginal);
+  				 for (int sub = 1; sub < 30; sub++)
+  				 {
+  					currPixel.setBlue(currPixel.getBlue()-1);
+  					rootblue = (int) Math.sqrt(currPixel.getBlue());
+  					 if (Math.pow(rootblue, 2) == currPixel.getBlue())
+  					 {
+  						 subdiff = blueoriginal - currPixel.getBlue();
+  						 break;
+  					 }
+  				 }
+  				 currPixel.setBlue(blueoriginal);
+  				 if (adddiff > subdiff)
+  				 {
+  					 currPixel.setBlue(blueoriginal - subdiff);
+  				 }
+  				 else if (adddiff < subdiff)
+  				 {
+  					 currPixel.setBlue(blueoriginal + adddiff);
+  				 }
+  			 }
+  			 int greenoriginal = currPixel.getGreen();
+  			 int rootgreen = (int) Math.sqrt(currPixel.getGreen());
+  			 if (Math.pow(rootgreen, 2) != currPixel.getGreen())
+  			 {
+  				 for (int add = 1; add < 30; add++)
+  				 {
+  					 currPixel.setGreen(currPixel.getGreen()+1);
+  					 rootgreen = (int) Math.sqrt(currPixel.getGreen());
+  					 if (Math.pow(rootgreen, 2) == currPixel.getGreen())
+  					 {
+  						 adddiff = currPixel.getGreen() - greenoriginal;
+  						 break;
+  					 }
+  				 }
+  				 currPixel.setGreen(greenoriginal);
+  				 for (int sub = 1; sub < 30; sub++)
+  				 {
+  					currPixel.setGreen(currPixel.getGreen()-1);
+  					rootgreen = (int) Math.sqrt(currPixel.getGreen());
+  					 if (Math.pow(rootgreen, 2) == currPixel.getGreen())
+  					 {
+  						 subdiff = greenoriginal - currPixel.getGreen();
+  						 break;
+  					 }
+  				 }
+  				 currPixel.setGreen(greenoriginal);
+  				 if (adddiff > subdiff)
+  				 {
+  					 currPixel.setGreen(greenoriginal - subdiff);
+  				 }
+  				 else if (adddiff < subdiff)
+  				 {
+  					 currPixel.setGreen(greenoriginal + adddiff);
+  				 }
+  				 if (adddiff > 8 && subdiff > 8)
+  				 {
+  					 currPixel.setGreen(greenoriginal);
+  				 }
+  			 }
+  			 messagePixel = messagePixels[row][col];
+  			 if (messagePixel.colorDistance(Color.BLACK) < 50)
+  			 {
+  				 currPixel.setRed(redoriginal+1);
+  				 currPixel.setBlue(blueoriginal+1);
+  				 currPixel.setGreen(greenoriginal+1);
+  			 }
+  		 }
+  	 }
+    }
+    
+    	public Picture decode2()
+    	{
+    		Pixel[][] pixels = this.getPixels2D();
+    		int height = this.getHeight();
+    		int width = this.getWidth();
+    		Pixel currPixel = null;
+    		Pixel messagePixel = null;
+  		Picture messagePicture = new Picture(height, width);
+    		Pixel[][] messagePixels = messagePicture.getPixels2D();
+    		int count = 0; 
+    		for (int row = 0; row < this.getHeight(); row++)
+    		{
+    			for (int col = 0; col < this.getWidth(); col++)
+    			{
+    				currPixel = pixels[row][col];
+    				messagePixel = messagePixels[row][col];
+    				 int rootred = (int) Math.sqrt(currPixel.getRed());
+    				if (Math.pow(rootred, 2) != currPixel.getRed())
+    				{
+    					int rootblue = (int) Math.sqrt(currPixel.getBlue());
+    	  				if (Math.pow(rootblue, 2) != currPixel.getBlue())
+    	  				{
+    	  					int rootgreen = (int) Math.sqrt(currPixel.getGreen());
+    	  	  				if (Math.pow(rootgreen, 2) != currPixel.getGreen())
+    	  	  				{
+    	  	  					messagePixel.setColor(Color.BLACK);
+    	  	  				}
+    	  				}
+    					
+    				}
+    			}
+    		}
+    		return messagePicture;
+    	}
   
   
   /** Method to show large changes in color 

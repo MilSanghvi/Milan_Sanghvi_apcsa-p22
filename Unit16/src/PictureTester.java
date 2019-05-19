@@ -199,6 +199,17 @@ public class PictureTester
 	  decoded.explore();
 	  message.explore();
   }
+  public static void testEncodeandDecode2()
+  {
+	  Picture beach = new Picture("src/images/beach.jpg");
+	  beach.explore();
+	  Picture message = new Picture("src/images/msg.jpg");
+	  beach.encode2(message);
+	  beach.explore();
+	  Picture decoded = beach.decode2();
+	  decoded.explore();
+	  message.explore();
+  }
 
 
   
@@ -211,6 +222,7 @@ public class PictureTester
     // and comment out the ones you don't want
     // to run
 	  testEncodeandDecode();
+	  testEncodeandDecode2();
    // testZeroRed();
  //   testZeroBlue();
 //    testZeroGreen();
