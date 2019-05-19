@@ -601,7 +601,7 @@ public void mirrorDiagonal()
 				 {
 					 currPixel.setRed(redoriginal + adddiff);
 				 }
-				 if (adddiff >= 7 && subdiff >= 7)
+				 if (adddiff > 8 && subdiff > 8)
 				 {
 					 currPixel.setRed(redoriginal);
 				 }
@@ -640,10 +640,6 @@ public void mirrorDiagonal()
 				 {
 					 currPixel.setBlue(blueoriginal + adddiff);
 				 }
-				 if (adddiff >= 8 && subdiff >= 8)
-				 {
-					 currPixel.setBlue(blueoriginal);
-				 }
 			 }
 			 int greenoriginal = currPixel.getGreen();
 			 int rootgreen = (int) Math.sqrt(currPixel.getGreen());
@@ -679,7 +675,7 @@ public void mirrorDiagonal()
 				 {
 					 currPixel.setGreen(greenoriginal + adddiff);
 				 }
-				 if (adddiff >= 8 && subdiff >= 8)
+				 if (adddiff > 8 && subdiff > 8)
 				 {
 					 currPixel.setGreen(greenoriginal);
 				 }
