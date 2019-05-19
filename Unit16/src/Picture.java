@@ -683,9 +683,9 @@ public void mirrorDiagonal()
 			 messagePixel = messagePixels[row][col];
 			 if (messagePixel.colorDistance(Color.BLACK) < 50)
 			 {
-				 currPixel.setRed(redoriginal);
-				 currPixel.setBlue(blueoriginal);
-				 currPixel.setGreen(greenoriginal);
+				 currPixel.setRed(redoriginal+1);
+				 currPixel.setBlue(blueoriginal+1);
+				 currPixel.setGreen(greenoriginal+1);
 			 }
 		 }
 	 }
