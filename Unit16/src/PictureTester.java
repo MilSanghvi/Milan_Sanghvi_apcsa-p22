@@ -188,6 +188,17 @@ public class PictureTester
     swan.edgeDetection2(10);
     swan.explore();
   }
+  public static void testEncodeandDecode()
+  {
+	  Picture beach = new Picture("src/images/beach.jpg");
+	  beach.explore();
+	  Picture message = new Picture("src/images/msg.jpg");
+	  beach.encode(message);
+	  beach.explore();
+	  Picture decoded = beach.decode();
+	  decoded.explore();
+	  message.explore();
+  }
 
 
   
@@ -199,6 +210,7 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
+	  testEncodeandDecode();
    // testZeroRed();
  //   testZeroBlue();
 //    testZeroGreen();
