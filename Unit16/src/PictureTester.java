@@ -210,7 +210,7 @@ public class PictureTester
 	  decoded.explore();
 	  message.explore();
   }
-  public static void testEncodeandDecodeApple()
+  public static void testEncodeandDecodeApple2()
   {
 	  Picture beach = new Picture("src/images/beach.jpg");
 	  beach.explore();
@@ -218,6 +218,17 @@ public class PictureTester
 	  beach.encode2(message);
 	  beach.explore();
 	  Picture decoded = beach.decode2();
+	  decoded.explore();
+	  message.explore();
+  }
+  public static void testEncodeandDecodeApple()
+  {
+	  Picture beach = new Picture("src/images/beach.jpg");
+	  beach.explore();
+	  Picture message = new Picture("src/images/apple.png");
+	  beach.encode(message);
+	  beach.explore();
+	  Picture decoded = beach.decode();
 	  decoded.explore();
 	  message.explore();
   }
@@ -234,6 +245,7 @@ public class PictureTester
     // to run
 	  //testEncodeandDecode();
 	 //testEncodeandDecode2();
+	 // testEncodeandDecodeApple2();
 	  testEncodeandDecodeApple();
    // testZeroRed();
  //   testZeroBlue();
