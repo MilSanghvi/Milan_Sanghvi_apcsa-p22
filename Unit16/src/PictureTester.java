@@ -243,10 +243,10 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-	  //testEncodeandDecode();
-	 //testEncodeandDecode2();
+	 // testEncodeandDecode();
+	 testEncodeandDecode2();
 	 // testEncodeandDecodeApple2();
-	  testEncodeandDecodeApple();
+	 // testEncodeandDecodeApple();
    // testZeroRed();
  //   testZeroBlue();
 //    testZeroGreen();
